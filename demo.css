@@ -101,7 +101,9 @@ body {
 body {
     /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
     font-family: 'Arial', sans-serif;
-    background-image: linear-gradient(to right top, #252325, #332d36, #3f384a, #49445f, #4e5276, #4b5c83, #45678e, #3d7298, #397a96, #3f8193, #4b888e, #5a8d8a);
+/*     background-image: linear-gradient(to right top, #252325, #332d36, #3f384a, #49445f, #4e5276, #4b5c83, #45678e, #3d7298, #397a96, #3f8193, #4b888e, #5a8d8a);
+ */
+    background: linear-gradient(to right, #00b67a, #006c4f);
 }
 
 .container {
