@@ -1,0 +1,179 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.issue-btn {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.issue-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#scenarioContent {
+    /* display: none; */
+    transition: all 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .container {
+            max-width: 900px;
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .scenario-container {
+            background: linear-gradient(120deg, #e0f7fa, #e3f2fd);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .scenario-container h4 {
+            color: #0d47a1;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .question-block {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            border-left: 5px solid #0d6efd;
+        }
+        
+        .alert {
+            font-weight: bold;
+        }
+        
+        h5 {
+            color: #0d6efd;
+        }
+        
+        .btn-custom {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+        } */
+
+body {
+    /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
+    font-family: 'Arial', sans-serif;
+    background-image: linear-gradient(to right top, #252325, #332d36, #3f384a, #49445f, #4e5276, #4b5c83, #45678e, #3d7298, #397a96, #3f8193, #4b888e, #5a8d8a);
+}
+
+.container {
+    min-height: 100vh;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.scenario-container {
+    /* background: linear-gradient(120deg, #e0f7fa, #e3f2fd); */
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.scenario-container h4 {
+    color: #0d47a1;
+    font-weight: bold;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.question-block {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    border-left: 5px solid #0d6efd;
+}
+
+.alert {
+    font-weight: bold;
+}
+
+h5 {
+    color: #0d6efd;
+}
+
+.btn-custom {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+
+/* Styles for the selected button */
+
+.btn-selected {
+    background-color: black;
+    color: aqua;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-default {
+    background-color: #0d6efd;
+    color: white;
+}
