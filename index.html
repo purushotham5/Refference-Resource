@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow System</title>
+    <link rel="stylesheet" href="demo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h2 class="mb-4 text-center" style="color: wheat;">Select an Issue</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('driversPayment', this)">Drivers Payment</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('idVerification', this)">ID Verification</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('License', this)">License</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('TripCancellations', this)">Trip Cancellations</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('DriverNoShow', this)">Driver No-show</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('VehicleCleanliness', this)">Vehicle Cleanliness</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('SafetyConcerns', this)">Safety Concerns</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('AccountDeactivation', this)">Account Deactivation</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('LowRatingIssues', this)">Low Rating Issues</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('InsuranceVerificationProblems', this)">Insurance Verification Problems</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('DriverProfileUpdateFailures', this)">Driver Profile Update Failures</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-custom btn-default" onclick="startWorkflow('RiderBehaviorIssues', this)">Rider Behavior Issues</button>
+            </div>
+        </div>
+
+        <div id="workflowContainer" class="mt-4 d-none">
+            <div id="scenarioContainer" class="scenario-container d-none">
+                <h4 id="scenarioTitle"></h4>
+                <p id="scenarioContent"></p>
+            </div>
+
+            <h3 class="text-center mt-4" style="color: wheat;">Workflow Questions</h3>
+            <div id="historyContainer"></div>
+        </div>
+    </div>
+    <script>
+        const workflows = {
+            idVerification: {
+                title: "🔍 ID Verification Process Explained",
+                content: `
+                <p><span class="highlight">ID Verification</span> ensures security by verifying drivers' identities before approval.</p>
+                <p>📝 <b>Steps involved:</b></p>
+                <ul>
+                    <li><b>Document Upload:</b> The driver must upload a <span class="highlight">government-issued ID</span> such as a passport, Aadhar, or driving license.</li>
+                    <li><b>Clarity Check:</b> The uploaded document must be <span class="highlight">clearly visible</span> and not blurred.</li>
+                    <li><b>Data Matching:</b> The name and details must <span class="highlight">match</span> the driver's registered account.</li>
+                    <li><b>Fraud Prevention:</b> If any detail is incorrect, the verification should be <span class="highlight">rejected</span> and the driver must upload a valid ID.</li>
+                </ul>
+                   <p>🛣️ **ID Verification Process for Lyft Drivers**</p>
+        <p>The <b>ID verification</b> process is one of the most critical components of becoming a Lyft driver. It ensures both the safety and security of the platform for both drivers and passengers. For drivers to be approved and allowed to operate on the Lyft platform, they must go through a series of steps that involve submitting and validating their identity. The process verifies that the driver is who they say they are and that their provided information is accurate.</p>
+        <p><b>Why ID Verification is Crucial</b></p>
+        <p><b>1. Ensures Safety of Riders:</b></p>
+        <p>The safety of riders is paramount. As passengers are placing their trust in the drivers, it’s essential that Lyft ensures the identity of the drivers is legitimate. The platform needs to ensure that no fraudulent or unsafe individuals are allowed to interact with passengers. For example, in cases where a driver has a history of unsafe behavior or criminal activity, Lyft can refuse service based on the verification process. This makes sure that riders are only interacting with trustworthy individuals.</p>
+        <p><b>2. Protects Against Fraud:</b></p>
+        <p>Fraudulent activities, such as using stolen identification or providing inaccurate information, can pose significant risks for the platform and its users. By conducting a strict identity verification, Lyft ensures that only legitimate individuals are approved. This helps prevent identity theft and financial fraud.</p>
+        <p><b>3. Legal Compliance:</b></p>
+        <p>Lyft must comply with government regulations and transportation safety laws, which require companies to confirm the identity of their drivers. This is especially important as ride-hailing services become more regulated across different cities and countries.</p>
+        <p><b>The Process of ID Verification for Lyft Drivers</b></p>
+        <p><b>Step 1: Document Upload</b></p>
+        <p>Drivers are required to upload a clear and legible copy of their <b>government-issued ID</b>. This could be any of the following:</p>
+        <ul>
+            <li><b>Passport</b></li>
+            <li><b>Driver’s License</b></li>
+            <li><b>National Identification Card</b></li>
+        </ul>
+        <p>The document must be free from blurring, have visible details such as the name, date of birth, and the ID number. The photo on the document should match the driver’s face.</p>
+        <p><b>Step 2: Face Match</b></p>
+        <p>After uploading the ID, drivers will be required to take a <b>selfie</b>. This selfie is compared with the photo on the uploaded ID to verify that the person in the ID matches the individual attempting to drive. Modern systems use <b>facial recognition technology</b> to perform this check.</p>
+        <p>The system checks several features such as:</p>
+        <ul>
+            <li><b>Facial symmetry</b></li>
+            <li><b>Eye positioning</b></li>
+            <li><b>Chin and nose shape</b></li>
+            <li><b>Hairline patterns</b></li>
+        </ul>
+        <p>The facial recognition system helps identify any discrepancies and flag potential identity fraud. If the photo does not match the one on the ID, the system may request the driver to upload another photo.</p>
+        <p><b>Step 3: Cross-Checking of Submitted Details</b></p>
+        <p>The details on the ID are cross-checked with the information submitted during the Lyft sign-up process. The system ensures that the:</p>
+        <ul>
+            <li><b>Full Name</b> matches</li>
+            <li><b>Date of Birth</b> is correct</li>
+            <li><b>ID Number</b> corresponds with the one on file</li>
+            <li><b>Address (if required)</b> matches the documentation</li>
+        </ul>
+        <p>This step also verifies that there is no discrepancy between the data provided by the driver and the details on the ID.</p>
+        <p><b>Step 4: Criminal Background Check</b></p>
+        <p>In many regions, a <b>background check</b> is a requirement for ID verification. This includes:</p>
+        <ul>
+            <li><b>Criminal history checks</b> to ensure the driver does not have any serious offenses that would disqualify them.</li>
+            <li><b>Driving record check</b> to verify whether the driver has a clean history and does not have points or other disqualifying marks.</li>
+        </ul>
+        <p><b>Step 5: Document Validation</b></p>
+        <p>Once the document and selfie match, the system will validate the authenticity of the uploaded ID. It verifies that the document has not been altered and that it conforms to government-issued identification standards.</p>
+        <p><b>Consequences of Failing to Complete ID Verification</b></p>
+        <p><b>1. Inability to Start Driving:</b></p>
+        <p>If the ID verification process is not completed successfully, the driver will not be able to <b>accept ride requests</b> on the Lyft platform. This means that the driver will not be approved to operate their vehicle and will be unable to start earning money. The platform will notify the driver of the failure, and they will not be allowed to proceed without resolving the issue. Drivers must complete the ID verification process in full to access the platform’s services.</p>
+        <p><b>2. Potential Delays in Approval:</b></p>
+        <p>If the verification process is delayed (e.g., if the document or selfie is blurry, or if the system detects an error), Lyft will need additional time to resolve the situation. During this time, the driver’s account may be <b>on hold</b>, and they cannot accept ride requests until the verification is completed. Additionally, if the system encounters multiple failures or discrepancies (e.g., mismatched photos), Lyft may <b>flag the driver’s account</b> for further manual review, which may extend the verification process.</p>
+        <p><b>3. Account Suspension:</b></p>
+        <p>In cases where a driver repeatedly fails to complete the ID verification, their account may be <b>suspended or deactivated</b>. Lyft may block the driver from accessing the platform entirely until the issue is resolved. If the driver submits fraudulent information or refuses to cooperate with the verification, their account can be permanently deactivated.</p>
+        <p><b>What Happens if ID Verification Fails</b></p>
+        <p>ID verification may fail for various reasons. Below are some common scenarios and how they can be resolved:</p>
+        <p><b>Scenario 1: Blurry Document Upload</b></p>
+        <p><b>Problem:</b> The uploaded document is unclear or too blurry to verify.</p>
+        <p><b>Resolution:</b></p>
+        <ul>
+            <li>Ensure that the ID is placed on a <b>flat surface</b> and the entire document is visible in the frame.</li>
+            <li><b>Avoid glare</b> by positioning the document in a well-lit area, but not in direct sunlight.</li>
+            <li>Ensure the document is <b>high-resolution</b>, so that text and numbers can be read easily.</li>
+        </ul>
+        <p>If the document is blurry, the driver can re-upload a new, clearer version of the ID.</p>
+        <p><b>Scenario 2: Selfie Does Not Match ID</b></p>
+        <p><b>Problem:</b> The driver’s selfie does not match the photo on the uploaded ID.</p>
+        <p><b>Resolution:</b></p>
+        <ul>
+            <li>The driver should try to take a <b>clear, well-lit selfie</b> where the face is visible.</li>
+            <li>Make sure the <b>face is centered</b> and the camera is not too far away or too close.</li>
+            <li>The driver may be prompted to <b>re-take the selfie</b> until a match is confirmed.</li>
+        </ul>
+        <p>If the photo does not match due to significant facial differences (e.g., due to a significant change in appearance), the driver should contact Lyft support to resolve the situation.</p>
+        <p><b>Scenario 3: Mismatched Information</b></p>
+        <p><b>Problem:</b> The information provided during sign-up doesn’t match the details on the ID (e.g., spelling errors, wrong birth date, or address mismatch).</p>
+        <p><b>Resolution:</b></p>
+        <ul>
+            <li>The driver must update the incorrect information in their Lyft account to match the details on the ID.</li>
+            <li>If there is a mismatch in the <b>address</b>, the driver may need to provide <b>proof of address</b> through a utility bill or bank statement.</li>
+        </ul>
+        <p>Drivers can update their account details through the app or website and re-submit their ID verification.</p>
+        <p><b>Scenario 4: Failed Criminal Background Check</b></p>
+        <p><b>Problem:</b> The criminal background check reveals an issue such as a criminal record or an accident history that makes the driver ineligible.</p>
+        <p><b>Resolution:</b></p>
+        <ul>
+            <li>If the background check reveals a discrepancy, the driver will be notified of the issue.</li>
+            <li>The driver may need to undergo a further review or provide documentation to clear the matter.</li>
+        </ul>
+        <p>If the driver’s criminal background disqualifies them from driving for Lyft, they will be unable to proceed with the verification process.</p>
+    `,
+                steps: [{
+                    question: "Has the driver uploaded a valid ID document?",
+                    yes: "✅ The driver has provided a valid government-issued ID that meets security standards.",
+                    no: "❌ The driver has not uploaded a valid ID, possibly due to missing documents or incorrect file formats."
+                }, {
+                    question: "Is the uploaded document clear and readable?",
+                    yes: "✅ The document is legible, with all details clearly visible.",
+                    no: "❌ The document is blurry or unclear. The driver may need to re-upload a clearer version."
+                }, {
+                    question: "Does the document name match the driver’s account name?",
+                    yes: "✅ The document name matches the driver’s registered name, confirming authenticity.",
+                    no: "❌ The document name does not match the registered driver’s name. Further verification is needed."
+                }]
+            },
+
+
+            driversPayment: {
+                "title": "💵 Payment Processing for Drivers",
+                "content": `
+            <p><span class="highlight">Payment Processing</span> ensures drivers are paid accurately and on time for the services they provide.</p>
+            <p>📝 <b>Steps involved:</b></p>
+            <ul>
+                <li><b>Payment Method Setup:</b> Drivers must add a valid <span class="highlight">payment method</span> to their account.</li>
+                <li><b>Ride Earnings Calculation:</b> Earnings are calculated based on <span class="highlight">ride fares</span>, including base fare, distance, and time.</li>
+                <li><b>Payment Schedule:</b> Payments are processed on a <span class="highlight">weekly basis</span>, with a cutoff for rides completed by a specific day.</li>
+                <li><b>Payment Confirmation:</b> After processing, the driver receives a <span class="highlight">payment receipt</span> with details of the ride earnings.</li>
+            </ul>
+            <p>💳 **Payment Processing for Lyft Drivers**</p>
+            <p>Payment processing is an essential aspect of a driver’s experience with Lyft. The platform ensures that drivers are paid for their services based on the rides they complete. Accurate and timely payment processing is vital for the drivers' financial stability and trust in the platform.</p>
+            <p><b>Why Payment Processing is Important:</b></p>
+            <p><b>1. Timely and Reliable Payments:</b></p>
+            <p>Lyft ensures that all drivers are paid accurately and on time, fostering trust and satisfaction among drivers. This reliability encourages drivers to continue working on the platform.</p>
+            <p><b>2. Transparency of Earnings:</b></p>
+            <p>Through detailed payment breakdowns, drivers can see exactly how their earnings are calculated, including fares, bonuses, and tips. This transparency is key to keeping drivers informed and motivated.</p>
+            <p><b>3. Financial Management for Drivers:</b></p>
+            <p>By providing a clear view of weekly earnings, Lyft helps drivers plan their finances, making it easier for them to manage personal expenses, savings, and investments.</p>
+            <p><b>The Process of Payment Processing for Lyft Drivers</b></p>
+            <p><b>Step 1: Payment Method Setup</b></p>
+            <p>Drivers are required to link a valid payment method to their Lyft account. This can include:</p>
+            <ul>
+                <li><b>Bank Account</b> (for direct deposit)</li>
+                <li><b>PayPal</b></li>
+                <li><b>Other payment platforms</b></li>
+            </ul>
+            <p>The linked payment method must be accurate to avoid payment issues.</p>
+            <p><b>Step 2: Ride Earnings Calculation</b></p>
+            <p>After each ride, Lyft calculates the earnings based on several factors:</p>
+            <ul>
+                <li><b>Base Fare:</b> A fixed amount for each ride.</li>
+                <li><b>Time and Distance:</b> Charges based on the time spent and distance traveled.</li>
+                <li><b>Bonuses:</b> Special bonuses for completing a set number of rides or working during peak hours.</li>
+                <li><b>Tips:</b> Direct tips given by riders.</li>
+            </ul>
+            <p>The final fare is calculated and stored in the driver’s account.</p>
+            <p><b>Step 3: Payment Schedule</b></p>
+            <p>Payments are processed weekly, usually every Monday, with a cutoff period for rides completed by the previous Sunday. Drivers can expect to receive their payment by the following Tuesday or Wednesday, depending on the payment method.</p>
+            <p><b>Step 4: Payment Confirmation</b></p>
+            <p>Once the payment is processed, drivers will receive a payment receipt via email or in the Lyft app. The receipt includes details of the total earnings, including bonuses and tips, with a breakdown of each ride completed.</p>
+            <p><b>Consequences of Payment Processing Issues</b></p>
+            <p><b>1. Payment Delays:</b></p>
+            <p>If the payment process is delayed (e.g., due to incorrect payment information or banking issues), the driver may not receive their payment on time. Lyft will notify the driver of any issues, and they can update their information accordingly.</p>
+            <p><b>2. Incorrect Earnings Calculations:</b></p>
+            <p>If there is an error in the earnings calculation, the driver can contact Lyft support to resolve the issue. This may include discrepancies in fares, tips, or bonuses.</p>
+            <p><b>3. Payment Rejection:</b></p>
+            <p>If a driver’s linked payment method is invalid or incorrect, payment may be rejected. The driver will need to update their payment details to receive future payments.</p>
+            <p><b>What to Do if Payment Processing Fails</b></p>
+            <p>If there’s an issue with payment processing, below are some common scenarios and resolutions:</p>
+            <p><b>Scenario 1: Incorrect Payment Method</b></p>
+            <p><b>Problem:</b> The payment method provided is incorrect or outdated.</p>
+            <p><b>Resolution:</b></p>
+            <ul>
+                <li>The driver should update their payment details through the Lyft app or website.</li>
+                <li>If the payment method is a bank account, ensure the account information is correct.</li>
+                <li>Check for any restrictions on the account, such as limits or blockages from the bank or PayPal.</li>
+            </ul>
+            <p>If the payment method is valid, the system will update and process future payments smoothly.</p>
+            <p><b>Scenario 2: Payment Delays</b></p>
+            <p><b>Problem:</b> Payments are delayed due to banking issues or incorrect payment method details.</p>
+            <p><b>Resolution:</b></p>
+            <ul>
+                <li>Ensure all payment details are correct and up-to-date.</li>
+                <li>Contact Lyft support if the issue persists to investigate the cause of the delay.</li>
+            </ul>
+            <p><b>Scenario 3: Payment Rejected</b></p>
+            <p><b>Problem:</b> The payment is rejected due to issues with the linked account.</p>
+            <p><b>Resolution:</b></p>
+            <ul>
+                <li>Ensure that the linked payment account is active and able to receive payments.</li>
+                <li>Update payment method details if necessary.</li>
+                <li>If there are issues with the bank or PayPal account, contact the respective service for resolution.</li>
+            </ul>
+        `,
+                "steps": [{
+                    "question": "Has the driver linked a valid payment method?",
+                    "yes": "✅ The driver has linked a valid payment method, ready for processing payments.",
+                    "no": "❌ The driver has not linked a valid payment method. They must add a valid method before receiving payments."
+                }, {
+                    "question": "Is the ride earnings calculation accurate?",
+                    "yes": "✅ The earnings are accurately calculated based on ride details and bonuses.",
+                    "no": "❌ There seems to be an issue with earnings calculation. Review the ride details or contact support."
+                }, {
+                    "question": "Has the payment been processed successfully?",
+                    "yes": "✅ The payment has been processed successfully and is reflected in the driver's account.",
+                    "no": "❌ The payment has failed or is delayed. Ensure the payment method is correct and up-to-date."
+                }]
+            }
+
+        };
+
+        let currentWorkflow = [];
+        let currentStep = 0;
+
+        function startWorkflow(type) {
+            let workflow = workflows[type];
+
+            document.getElementById("scenarioTitle").innerHTML = workflow.title;
+            document.getElementById("scenarioContent").innerHTML = workflow.content;
+            document.getElementById("scenarioContainer").classList.remove("d-none");
+
+            currentWorkflow = workflow.steps;
+            currentStep = 0;
+            document.getElementById("workflowContainer").classList.remove("d-none");
+            document.getElementById("historyContainer").innerHTML = "";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentStep < currentWorkflow.length) {
+                let questionData = currentWorkflow[currentStep];
+
+                let questionBlock = document.createElement("div");
+                questionBlock.className = "question-block p-3 mb-3";
+
+                questionBlock.innerHTML = `
+                    <h5>${questionData.question}</h5>
+                    <button class="btn btn-light me-2" id="yesBtn-${currentStep}" onclick="handleResponse(${currentStep}, 'yes')">Yes</button>
+                    <button class="btn btn-light me-2" id="noBtn-${currentStep}" onclick="handleResponse(${currentStep}, 'no')">No</button>
+                    <div class="justification mt-3 d-none" id="justification-${currentStep}">
+                        <p class="alert alert-info"></p>
+                        <button class="btn btn-secondary mt-2" onclick="nextQuestion()">Next Question</button>
+                    </div>
+                `;
+
+                document.getElementById("historyContainer").appendChild(questionBlock);
+            }
+        }
+
+        function handleResponse(step, response) {
+            const yesButton = document.getElementById(`yesBtn-${step}`);
+            const noButton = document.getElementById(`noBtn-${step}`);
+
+            if (response === 'yes') {
+                yesButton.classList.remove('btn-light');
+                yesButton.classList.add('btn-success');
+                noButton.classList.remove('btn-danger');
+                noButton.classList.add('btn-light');
+            } else {
+                noButton.classList.remove('btn-light');
+                noButton.classList.add('btn-danger');
+                yesButton.classList.remove('btn-success');
+                yesButton.classList.add('btn-light');
+            }
+
+            document.getElementById(`justification-${step}`).classList.remove("d-none");
+            document.getElementById(`justification-${step}`).querySelector("p").innerText = response === 'yes' ?
+                currentWorkflow[step].yes : currentWorkflow[step].no;
+        }
+
+        function nextQuestion() {
+            currentStep++;
+            showQuestion();
+        }
+
+        // this is for to change the issue tabs bg color when user click  
+        function startWorkflow(type, button) {
+            // Reset previous selected buttons
+            let buttons = document.querySelectorAll('.btn-custom');
+            buttons.forEach(btn => {
+                btn.classList.remove('btn-selected');
+                btn.classList.add('btn-default');
+            });
+
+            // Add selected class to clicked button
+            button.classList.remove('btn-default');
+            button.classList.add('btn-selected');
+
+            let workflow = workflows[type];
+
+            document.getElementById("scenarioTitle").innerHTML = workflow.title;
+            document.getElementById("scenarioContent").innerHTML = workflow.content;
+            document.getElementById("scenarioContainer").classList.remove("d-none");
+
+            currentWorkflow = workflow.steps;
+            currentStep = 0;
+            document.getElementById("workflowContainer").classList.remove("d-none");
+            document.getElementById("historyContainer").innerHTML = "";
+            showQuestion();
+        }
+    </script>
+
+</body>
+
+</html>
